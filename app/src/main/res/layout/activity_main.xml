@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="editor"
+            type="String" />
+
+        <variable
+            name="myTable"
+            type="com.example.myapplication.model.entity.MyTable" />
+
+        <variable
+            name="onlyLiveData"
+            type="String" />
+
+        <variable
+            name="onlyDataBinding"
+            type="androidx.databinding.ObservableField&lt;String&gt;" />
+
+        <variable
+            name="liveDataViewModel"
+            type="com.example.myapplication.ui.viewmodel.LiveDataViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/txt_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:hint="请输入"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@={editor}" />
+
+        <TextView
+            android:id="@+id/txt_display"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@{editor}" />
+
+        <TextView
+            android:id="@+id/txt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@{myTable.name}" />
+
+        <TextView
+            android:id="@+id/txt_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@{String.valueOf(myTable.age)}" />
+
+        <TextView
+            android:id="@+id/txt_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@{String.valueOf(myTable.info)}" />
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="英文" />
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="中文" />
+
+        <TextView
+            android:id="@+id/txt_onlyLiveData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{onlyLiveData}" />
+
+        <TextView
+            android:id="@+id/txt_onlyDataBinding"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={onlyDataBinding}" />
+
+        <TextView
+            android:id="@+id/txt_liveDataViewModel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{liveDataViewModel.liveData}" />
+
+        <Button
+            android:id="@+id/btn_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="测试Room数据库" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/txt_room"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@{liveDataViewModel.liveDataFromRoom.toString()}" />-->
+    </LinearLayout>
+</layout>
