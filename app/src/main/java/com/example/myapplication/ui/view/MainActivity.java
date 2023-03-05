@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);  // 通过DataBinding库将Activity设置为给定的XML布局，并返回关联的绑定
 
+        bindingLifecycleOwnerAndViewModel();
+
         DataBindingExample();
         LiveDataExample();
         LiveDataAndViewModelExample();
@@ -121,11 +123,6 @@ public class MainActivity extends AppCompatActivity
      */
     private void LiveDataAndViewModelExample()
     {
-        binding.setLifecycleOwner(this);  // 将 LifecycleOwner 对象(通常为Activity或Fragment的实例)传递给 binding
-
-        liveDataViewModel = new ViewModelProvider(this).get(LiveDataViewModel.class);  // 获取 ViewModel 实例
-
-        binding.setLiveDataViewModel(liveDataViewModel);
         binding.txtLiveDataViewModel.addTextChangedListener(new TextWatcher()
         {
             @Override
@@ -151,15 +148,15 @@ public class MainActivity extends AppCompatActivity
         appDatabase = AppDatabase.getAppDatabaseInstance(this);
         appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
         appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
-        appDatabase.getStudentDao().insert(new Student(0,1));
-        appDatabase.getStudentDao().insert(new Student(0,2));
+        appDatabase.getStudentDao().insert(new Student(0, 1));
+        appDatabase.getStudentDao().insert(new Student(0, 2));
 
         binding.btnRoom.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                appDatabase.getPersonDao().delete(new Person(1,"Room",18));
+                appDatabase.getPersonDao().delete(new Person(1, "Room", 18));
             }
         });
     }
@@ -190,5 +187,14 @@ public class MainActivity extends AppCompatActivity
     private void changeValue2()
     {
         liveDataViewModel.getLiveData().setValue("liveDataViewModel 值改变");
+    }
+
+    private void bindingLifecycleOwnerAndViewModel()
+    {
+        binding.setLifecycleOwner(this);  // 将 LifecycleOwner 对象(通常为Activity或Fragment的实例)传递给 binding
+
+        liveDataViewModel = new ViewModelProvider(this).get(LiveDataViewModel.class);  // 获取 ViewModel 实例
+
+        binding.setLiveDataViewModel(liveDataViewModel);
     }
 }

@@ -12,6 +12,9 @@ import com.example.myapplication.model.room.database.AppDatabase;
 
 import java.util.List;
 
+/**
+ * 采用可以接受 Application 参数的 AndroidViewModel 作为父类
+ */
 public class LiveDataViewModel extends AndroidViewModel
 {
     private final MutableLiveData<String> liveData = new MutableLiveData<>();
