@@ -28,5 +28,5 @@ public interface StudentDao
     void update(Student... students);
 
     @Query("select * from Student")
-    List<Student> queryAll();
+    LiveData<List<Student>> queryAll();
 }

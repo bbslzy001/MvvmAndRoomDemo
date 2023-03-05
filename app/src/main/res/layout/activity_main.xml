@@ -104,10 +104,10 @@
             android:layout_height="wrap_content"
             android:text="测试Room数据库" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/txt_room"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@{liveDataViewModel.liveDataFromRoom.toString()}" />-->
+        <TextView
+            android:id="@+id/txt_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{liveDataViewModel.liveDataFromRoom.toString()}" />
     </LinearLayout>
 </layout>
