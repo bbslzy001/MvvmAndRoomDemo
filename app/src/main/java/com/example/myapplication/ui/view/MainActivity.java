@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
     private void RoomDatabaseExample()
     {
-        appDatabase = AppDatabase.getAppDatabaseInstance(this);
+        appDatabase = AppDatabase.getAppDatabaseInstance();
         appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
         appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
         appDatabase.getStudentDao().insert(new Student(0, 1));

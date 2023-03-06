@@ -1,11 +1,10 @@
 package com.example.myapplication.model.room.database;
 
-import android.content.Context;
-
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.myapplication.application.MyApplication;
 import com.example.myapplication.model.room.bean.Person;
 import com.example.myapplication.model.room.bean.Student;
 import com.example.myapplication.model.room.dao.PersonDao;
@@ -36,24 +35,26 @@ public abstract class AppDatabase extends RoomDatabase
     /**
      * 获取数据库实例（单例模式）
      *
-     * @param context 上下文
+     * 如果不使用全局 Context，该方法需要添加 Context 参数
+     *
      * @return 数据库实例
      */
-    public static AppDatabase getAppDatabaseInstance(Context context)
+    public static AppDatabase getAppDatabaseInstance()
     {
-        if (appDatabase == null) appDatabase = createAppDatabase(context);
+        if (appDatabase == null) appDatabase = createAppDatabase();
         return appDatabase;
     }
 
     /**
      * 创建数据库
      *
-     * @param context 上下文
+     * 如果不使用全局 Context，该方法需要添加 Context 参数
+     *
      * @return 数据库实例
      */
-    private static AppDatabase createAppDatabase(Context context)
+    private static AppDatabase createAppDatabase()
     {
-        return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).allowMainThreadQueries().build();  // 允许主线程进行数据库操作（尽量避免）
+        return Room.databaseBuilder(MyApplication.getContext(), AppDatabase.class, DB_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();  // 允许主线程进行数据库操作（尽量避免）；构建实例时销毁原数据库（仅开发时使用）
         // return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
     }
 }
