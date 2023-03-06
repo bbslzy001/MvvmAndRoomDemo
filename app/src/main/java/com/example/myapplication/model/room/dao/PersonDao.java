@@ -40,7 +40,7 @@ public interface PersonDao
      *
      * @param persons 一个或多个 Person 实例
      */
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Person... persons);
 
     /**

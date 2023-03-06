@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity
         appDatabase = AppDatabase.getAppDatabaseInstance();
         appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
         appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
-        appDatabase.getStudentDao().insert(new Student(0, 1));
+        appDatabase.getStudentDao().insert(new Student(0, 2));
         appDatabase.getStudentDao().insert(new Student(0, 2));
 
         binding.btnRoom.setOnClickListener(new View.OnClickListener()
