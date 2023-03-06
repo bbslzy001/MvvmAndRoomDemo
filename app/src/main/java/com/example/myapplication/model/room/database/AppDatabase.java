@@ -54,7 +54,7 @@ public abstract class AppDatabase extends RoomDatabase
      */
     private static AppDatabase createAppDatabase()
     {
-        return Room.databaseBuilder(MyApplication.getContext(), AppDatabase.class, DB_NAME).fallbackToDestructiveMigration().allowMainThreadQueries().build();  // 允许主线程进行数据库操作（尽量避免）；构建实例时销毁原数据库（仅开发时使用）
+        return Room.databaseBuilder(MyApplication.getContext(), AppDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();  // 允许主线程进行数据库操作（尽量避免）；构建实例时销毁原数据库（仅开发时使用）
         // return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
     }
 }

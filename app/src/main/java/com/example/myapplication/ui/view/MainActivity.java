@@ -16,9 +16,10 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.example.myapplication.model.entity.MyTable;
+import com.example.myapplication.model.repository.PersonRepository;
+import com.example.myapplication.model.repository.StudentRepository;
 import com.example.myapplication.model.room.bean.Person;
 import com.example.myapplication.model.room.bean.Student;
-import com.example.myapplication.model.room.database.AppDatabase;
 import com.example.myapplication.ui.viewmodel.LiveDataViewModel;
 
 import java.util.List;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity
     private final MutableLiveData<String> onlyLiveData = new MutableLiveData<>();
     private final ObservableField<String> onlyDataBinding = new ObservableField<>();
     private LiveDataViewModel liveDataViewModel;
-    private AppDatabase appDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -145,18 +145,19 @@ public class MainActivity extends AppCompatActivity
 
     private void RoomDatabaseExample()
     {
-        appDatabase = AppDatabase.getAppDatabaseInstance();
-        appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
-        appDatabase.getPersonDao().insert(new Person(0, "Room", 18));
-        appDatabase.getStudentDao().insert(new Student(0, 2));
-        appDatabase.getStudentDao().insert(new Student(0, 2));
+        PersonRepository personRepository = new PersonRepository();
+        StudentRepository studentRepository = new StudentRepository();
+        personRepository.insert(new Person(0, "Room", 18));
+        personRepository.insert(new Person(0, "Room", 18));
+        studentRepository.insert(new Student(0, 2));
+        studentRepository.insert(new Student(0, 2));
 
         binding.btnRoom.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view)
             {
-                appDatabase.getPersonDao().delete(new Person(1, "Room", 18));
+                personRepository.delete(new Person(1, "Room", 18));
             }
         });
     }

@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.myapplication.model.repository.StudentRepository;
 import com.example.myapplication.model.room.bean.Student;
-import com.example.myapplication.model.room.database.AppDatabase;
 
 import java.util.List;
 
@@ -21,8 +21,8 @@ public class LiveDataViewModel extends ViewModel
 
     public LiveDataViewModel()
     {
-        AppDatabase appDatabase = AppDatabase.getAppDatabaseInstance();
-        liveDataFromRoom = appDatabase.getStudentDao().queryAll();
+        StudentRepository studentRepository = new StudentRepository();
+        liveDataFromRoom = studentRepository.queryAll();
     }
 
     public MutableLiveData<String> getLiveData()

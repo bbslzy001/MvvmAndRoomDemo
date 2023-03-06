@@ -8,6 +8,7 @@ package com.example.myapplication.model.room.dao;
  * Update ： 标注数据库的更新操作。
  */
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -79,7 +80,7 @@ public interface PersonDao
      * @return 由 Person 实例构成的 List
      */
     @Query("select * from Person")
-    List<Person> queryAll();
+    LiveData<List<Person>> queryAll();
 
     /**
      * 根据 id 查询一条记录
@@ -88,7 +89,7 @@ public interface PersonDao
      * @return 一个 Person 实例
      */
     @Query("select * from Person where P_id= :id")
-    Person queryById(int id);
+    LiveData<Person> queryById(int id);
 
     /**
      * 根据 id 查询一条或多条记录
@@ -97,7 +98,7 @@ public interface PersonDao
      * @return 一个或多个 Person 实例
      */
     @Query("select * from Person where P_id in (:ids)")
-    List<Person> queryAllByIds(List<Integer> ids);
+    LiveData<List<Person>> queryByIds(int... ids);
 
     /**
      * 根据 name 和 age 查询一条记录
@@ -107,5 +108,5 @@ public interface PersonDao
      * @return 一个 Person 实例
      */
     @Query("select * from Person where P_name = :name and P_age = :age")
-    Person queryByNameAge(String name, int age);
+    LiveData<Person> queryByNameAge(String name, int age);
 }
