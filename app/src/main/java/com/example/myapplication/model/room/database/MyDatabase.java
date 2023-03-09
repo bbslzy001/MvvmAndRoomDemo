@@ -18,10 +18,10 @@ import com.example.myapplication.model.room.dao.StudentDao;
         entities = {Person.class, Student.class},
         version = 1
 )
-public abstract class AppDatabase extends RoomDatabase
+public abstract class MyDatabase extends RoomDatabase
 {
     private static final String DB_NAME = "App.db";  // 数据库名称
-    private static AppDatabase appDatabase;  // 持有数据库实例
+    private static MyDatabase myDatabase;  // 持有数据库实例
 
     /**
      * 对于与数据库关联的 DAO 类，需要提供一个无参抽象方法用于返回 DAO 类的实例
@@ -39,10 +39,10 @@ public abstract class AppDatabase extends RoomDatabase
      *
      * @return 数据库实例
      */
-    public static AppDatabase getAppDatabaseInstance()
+    public static MyDatabase getMyDatabaseInstance()
     {
-        if (appDatabase == null) appDatabase = createAppDatabase();
-        return appDatabase;
+        if (myDatabase == null) myDatabase = createMyDatabase();
+        return myDatabase;
     }
 
     /**
@@ -52,9 +52,9 @@ public abstract class AppDatabase extends RoomDatabase
      *
      * @return 数据库实例
      */
-    private static AppDatabase createAppDatabase()
+    private static MyDatabase createMyDatabase()
     {
-        return Room.databaseBuilder(MyApplication.getContext(), AppDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();  // 允许主线程进行数据库操作（尽量避免）；构建实例时销毁原数据库（仅开发时使用）
+        return Room.databaseBuilder(MyApplication.getContext(), MyDatabase.class, DB_NAME).fallbackToDestructiveMigration().build();  // 允许主线程进行数据库操作（尽量避免）；构建实例时销毁原数据库（仅开发时使用）
         // return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
     }
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 
 import com.example.myapplication.model.room.bean.Person;
 import com.example.myapplication.model.room.dao.PersonDao;
-import com.example.myapplication.model.room.database.AppDatabase;
+import com.example.myapplication.model.room.database.MyDatabase;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -33,8 +33,8 @@ public class PersonRepository
 
     public PersonRepository()
     {
-        AppDatabase appDatabase = AppDatabase.getAppDatabaseInstance();
-        personDao = appDatabase.getPersonDao();
+        MyDatabase myDatabase = MyDatabase.getMyDatabaseInstance();
+        personDao = myDatabase.getPersonDao();
         executor = Executors.newSingleThreadExecutor();
     }
 
